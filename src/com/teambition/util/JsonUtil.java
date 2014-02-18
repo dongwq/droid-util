@@ -24,19 +24,23 @@ public class JsonUtil {
      * 对于从服务器端来的数据要使用ISODateAdapter， 其他数据不用使用
      */
     public static <V> ArrayList<V> jsonToList(String strJSON, Class<V> clazz) {
+
         Gson gson = new GsonBuilder().setDateFormat(DateUtil.DATE_FORMAT_JSON)
                 .registerTypeAdapter(Date.class, new ISODateAdapter())
                 .create();
 
         Type listType = new TypeToken<List<V>>() {
         }.getType();
-        List<V> vList = gson.fromJson(strJSON, listType);
-
         ArrayList<V> list = new ArrayList<V>();
-        for (V v : vList) {
 
-            String result = gson.toJson(v);
-            list.add(gson.fromJson(result, clazz));
+        try {
+            List<V> vList = gson.fromJson(strJSON, listType);
+            for (V v : vList) {
+                String result = gson.toJson(v);
+                list.add(gson.fromJson(result, clazz));
+            }
+        } catch (JsonSyntaxException i) {
+            i.printStackTrace();
         }
 
         return list;
@@ -46,7 +50,14 @@ public class JsonUtil {
         Gson gson = new GsonBuilder().setDateFormat(DateUtil.DATE_FORMAT_JSON)
                 .registerTypeAdapter(Date.class, new ISODateAdapter())
                 .create();
-        V v = gson.fromJson(strJSON, clazz);
+        V v = null;
+
+        try {
+            v = gson.fromJson(strJSON, clazz);
+        } catch (JsonSyntaxException i) {
+            i.printStackTrace();
+        }
+
         return v;
     }
 
