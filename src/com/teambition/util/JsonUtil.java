@@ -1,5 +1,6 @@
 package com.teambition.util;
 
+import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
@@ -32,14 +33,15 @@ public class JsonUtil {
         Type listType = new TypeToken<List<V>>() {
         }.getType();
         ArrayList<V> list = new ArrayList<V>();
-
+        String result = null;
         try {
             List<V> vList = gson.fromJson(strJSON, listType);
             for (V v : vList) {
-                String result = gson.toJson(v);
+                result = gson.toJson(v);
                 list.add(gson.fromJson(result, clazz));
             }
         } catch (JsonSyntaxException i) {
+            Log.d("teambition", result);
             i.printStackTrace();
         }
 
