@@ -4,7 +4,6 @@
     <facet type="android" name="Android">
       <configuration>
         <option name="LIBRARY_PROJECT" value="true" />
-        <option name="UPDATE_PROPERTY_FILES" value="true" />
       </configuration>
     </facet>
     <facet type="android" name="Android2">
@@ -21,33 +20,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/gson-2.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/pinyin4j-2.5.0-cleaned.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/crouton-1.8.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="libs" level="project" />
+    <orderEntry type="library" name="crouton-1.8.1" level="project" />
   </component>
 </module>
 

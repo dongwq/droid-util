@@ -31,6 +31,8 @@ public class DateUtil {
 
     public static final String DATE_FORMAT_A = "HH:mm";
 
+    public static final String DATE_FORMAT_Short = "M月dd日";
+
     public static final String DATE_FORMAT_Title = "%s(%s)";
     public final static String GMT = "GMT";
 
@@ -58,6 +60,10 @@ public class DateUtil {
         return dateFormat1.format(date);
     }
 
+    public static String dateFormatShort(Date date) {
+        DateFormat dateFormat1 = DateFormat.getDateInstance(DateFormat.SHORT);
+        return dateFormat1.format(date);
+    }
 
     public static String timeFormat(Date date, int format) {
         DateFormat dateFormat1 = DateFormat.getTimeInstance(format);
@@ -89,6 +95,37 @@ public class DateUtil {
         }
 
         return DateUtil.mediumFormat(date);
+    }
+
+    public static String commonDateFormat(Context context, Date date, int txtToday, int txtTomorrow) {
+        if (date == null) return "";
+
+        if (DateUtil.isTodayOrBefore(date)) {
+            if (DateUtil.isToday(date)) {
+                return context.getString(txtToday);
+            } else {
+                if (DateUtil.isThisYear(date)) {
+                    return DateUtil.formatDate(date, DATE_FORMAT_Short);
+                }
+                return DateUtil.mediumFormat(date);
+            }
+        }
+
+        if (DateUtil.isBeforeTomorrow(date)) {
+            return context.getString(txtTomorrow);
+        }
+
+        return DateUtil.mediumFormat(date);
+    }
+
+    public static boolean isThisYear(Date date1) {
+        Date date2 = new Date();
+
+        if (date1 != null && date2 != null) {
+            return DateUtil.getDateElement(date1, Calendar.YEAR) == DateUtil.getDateElement(date2, Calendar.YEAR);
+        }
+
+        return false;
     }
 
     public static String timeFormat(Date date) {
