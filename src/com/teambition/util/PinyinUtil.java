@@ -63,6 +63,11 @@ public class PinyinUtil {
      */
     public static String converterToSpell(String chines) {
         String pinyinName = "";
+
+        if (StringUtil.isBlank(chines)) {
+            return "";
+        }
+
         chines = chines.replaceAll("\\p{P}", "");
 
         char[] nameChar = chines.toCharArray();

@@ -36,9 +36,11 @@ public class JsonUtil {
         String result = null;
         try {
             List<V> vList = gson.fromJson(strJSON, listType);
-            for (V v : vList) {
-                result = gson.toJson(v);
-                list.add(gson.fromJson(result, clazz));
+            if (vList != null) {
+                for (V v : vList) {
+                    result = gson.toJson(v);
+                    list.add(gson.fromJson(result, clazz));
+                }
             }
         } catch (JsonSyntaxException i) {
             Log.d("teambition", result);

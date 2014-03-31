@@ -22,6 +22,16 @@ public class StringUtil {
         return !StringUtil.isNotBlank(str);
     }
 
+
+    public static String isStrOrBlank(String str) {
+        if (StringUtil.isNotBlank(str)) {
+            return str;
+        }
+
+        return "";
+    }
+
+
     public static boolean isNotEmpty(List collection) {
         return collection != null && !collection.isEmpty();
     }
